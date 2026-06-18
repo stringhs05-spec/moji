@@ -14,55 +14,62 @@ body{
   font-family:'Hiragino Kaku Gothic ProN','Yu Gothic','Meiryo',sans-serif;
   user-select:none;-webkit-user-select:none;background:#000;
 }
-/* ── オーバーレイ共通 ── */
-.ov{
-  position:fixed;inset:0;display:none;
-  flex-direction:column;align-items:center;justify-content:center;
-  z-index:50;
-}
+.ov{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;z-index:50}
 .ov.on{display:flex}
 
-/* ── YouTubeコンテナ ── */
-#yt-wrap{position:fixed;inset:0;background:#000}
-#yt-player,#yt-player iframe{
-  position:absolute;inset:0;width:100%!important;height:100%!important;border:none;
+/* ── スタート画面 ── */
+#ov-start{
+  background:linear-gradient(155deg,#fce7f3 0%,#ede9fe 58%,#e0f2fe 100%);
+  z-index:90;gap:22px;padding:36px 28px;text-align:center;
 }
+.st-logo{font-size:32px;font-weight:bold;color:#9d174d;letter-spacing:4px}
+.st-info{
+  background:white;border-radius:18px;padding:14px 22px;
+  border:2px solid #fbcfe8;font-size:14px;color:#6b7280;
+  max-width:320px;line-height:1.7;
+}
+.st-info b{color:#9d174d}
+.big-btn{
+  padding:16px 48px;border-radius:26px;border:none;
+  background:linear-gradient(135deg,#f472b6,#c084fc);
+  color:white;font-size:20px;font-weight:bold;letter-spacing:3px;
+  cursor:pointer;box-shadow:0 6px 22px rgba(236,72,153,.4);
+  font-family:inherit;
+}
+.sub-btn{
+  padding:10px 24px;border-radius:16px;border:2px solid #f9a8d4;
+  background:white;color:#9d174d;font-size:14px;font-weight:bold;
+  cursor:pointer;font-family:inherit;
+}
+
+/* ── YouTube ── */
+#yt-wrap{position:fixed;inset:0;background:#000}
+#yt-player,#yt-player iframe{position:absolute;inset:0;width:100%!important;height:100%!important;border:none}
 
 /* ── タイマーバッジ ── */
 #badge{
-  position:fixed;top:max(env(safe-area-inset-top,0px),10px);right:12px;
-  z-index:40;
+  position:fixed;top:max(env(safe-area-inset-top,0px),10px);right:12px;z-index:40;
   background:rgba(0,0,0,.55);backdrop-filter:blur(8px);
-  border-radius:20px;padding:6px 14px;
-  color:white;font-size:14px;font-weight:bold;
-  display:flex;align-items:center;gap:7px;
-  border:1px solid rgba(255,255,255,.2);
+  border-radius:20px;padding:6px 14px;color:white;font-size:14px;font-weight:bold;
+  display:flex;align-items:center;gap:7px;border:1px solid rgba(255,255,255,.2);
 }
 .dot{width:8px;height:8px;border-radius:50%;background:#f472b6;animation:pulse 1.5s ease infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.75)}}
-
-/* ── 設定ボタン ── */
 #gear-btn{
-  position:fixed;bottom:max(env(safe-area-inset-bottom,0px),14px);right:14px;
-  z-index:40;width:40px;height:40px;border-radius:50%;border:none;
+  position:fixed;bottom:max(env(safe-area-inset-bottom,0px),14px);right:14px;z-index:40;
+  width:40px;height:40px;border-radius:50%;border:none;
   background:rgba(0,0,0,.45);backdrop-filter:blur(6px);
   color:white;font-size:20px;cursor:pointer;
   display:flex;align-items:center;justify-content:center;
   border:1px solid rgba(255,255,255,.2);
 }
 
-/* ── クイズオーバーレイ ── */
+/* ── クイズ ── */
 #ov-quiz{
   background:linear-gradient(155deg,rgba(252,231,243,.97),rgba(237,233,254,.97) 55%,rgba(224,242,254,.97));
-  backdrop-filter:blur(4px);
-  gap:10px;padding:14px 16px;
+  backdrop-filter:blur(4px);gap:10px;padding:14px 16px;
 }
-.q-head{
-  display:flex;align-items:center;gap:14px;
-  background:white;border-radius:18px;padding:10px 22px;
-  box-shadow:0 4px 18px rgba(236,72,153,.15);
-  border:2px solid #fbcfe8;
-}
+.q-head{display:flex;align-items:center;gap:14px;background:white;border-radius:18px;padding:10px 22px;box-shadow:0 4px 18px rgba(236,72,153,.15);border:2px solid #fbcfe8}
 .q-char{font-size:52px;color:#9d174d;font-weight:bold;line-height:1}
 .q-hint{font-size:12px;color:#6b7280;margin-top:2px}
 .q-row{display:flex;gap:14px;align-items:flex-start}
@@ -70,127 +77,69 @@ body{
 .cv-lbl{font-size:12px;font-weight:bold;color:#be185d}
 canvas{
   width:min(calc(48vw - 20px),calc(50vh - 80px),300px);
-  aspect-ratio:1/1;
-  border-radius:16px;
-  box-shadow:0 4px 20px rgba(236,72,153,.18);
-  display:block;touch-action:none;cursor:crosshair;
+  aspect-ratio:1/1;border-radius:16px;
+  box-shadow:0 4px 20px rgba(236,72,153,.18);display:block;touch-action:none;cursor:crosshair;
 }
-.wbtn{
-  padding:4px 14px;border-radius:9px;border:none;
-  background:#fce7f3;color:#be185d;font-size:11px;
-  font-weight:bold;cursor:pointer;font-family:inherit;
-}
+.wbtn{padding:4px 14px;border-radius:9px;border:none;background:#fce7f3;color:#be185d;font-size:11px;font-weight:bold;cursor:pointer;font-family:inherit}
 .q-foot{display:flex;align-items:center;gap:14px}
-.pen-dot{
-  width:20px;height:20px;border-radius:50%;
-  border:2.5px solid white;flex-shrink:0;
-  transition:background .2s,box-shadow .2s;
-}
-.jbtn{
-  padding:11px 30px;border-radius:22px;border:none;
-  background:linear-gradient(135deg,#f472b6,#c084fc);
-  color:white;font-size:15px;font-weight:bold;
-  letter-spacing:2px;cursor:pointer;
-  box-shadow:0 4px 16px rgba(236,72,153,.4);
-  font-family:inherit;
-}
+.pen-dot{width:20px;height:20px;border-radius:50%;border:2.5px solid white;flex-shrink:0;transition:background .2s,box-shadow .2s}
+.jbtn{padding:11px 30px;border-radius:22px;border:none;background:linear-gradient(135deg,#f472b6,#c084fc);color:white;font-size:15px;font-weight:bold;letter-spacing:2px;cursor:pointer;box-shadow:0 4px 16px rgba(236,72,153,.4);font-family:inherit}
 
-/* ── 結果オーバーレイ ── */
+/* ── 結果 ── */
 #ov-result{gap:16px;padding:40px 28px;text-align:center}
 #ov-result.pass{background:linear-gradient(155deg,rgba(220,252,231,.97),rgba(187,247,208,.97))}
 #ov-result.fail{background:linear-gradient(155deg,rgba(255,237,213,.97),rgba(254,243,199,.97))}
 .r-stars{font-size:52px;letter-spacing:8px}
 .r-title{font-size:28px;font-weight:bold}
 .r-msg{font-size:15px;opacity:.85}
-.rbtn{
-  padding:14px 40px;border-radius:22px;border:none;
-  color:white;font-size:17px;font-weight:bold;
-  letter-spacing:2px;cursor:pointer;font-family:inherit;margin-top:4px;
-}
+.rbtn{padding:14px 40px;border-radius:22px;border:none;color:white;font-size:17px;font-weight:bold;letter-spacing:2px;cursor:pointer;font-family:inherit;margin-top:4px}
 .rbtn.pass{background:linear-gradient(135deg,#34d399,#059669);box-shadow:0 5px 16px rgba(5,150,105,.35)}
 .rbtn.fail{background:linear-gradient(135deg,#fb923c,#ea580c);box-shadow:0 5px 16px rgba(234,88,12,.35)}
 .r-cd{font-size:13px;color:#6b7280;min-height:20px}
 
 /* ── 計算ゲート ── */
-#ov-math{
-  background:linear-gradient(155deg,rgba(252,231,243,.97),rgba(237,233,254,.97));
-  backdrop-filter:blur(8px);gap:18px;padding:40px 28px;text-align:center;
-  z-index:80;
-}
+#ov-math{background:linear-gradient(155deg,rgba(252,231,243,.97),rgba(237,233,254,.97));backdrop-filter:blur(8px);gap:18px;padding:40px 28px;text-align:center;z-index:80}
 .math-title{font-size:18px;font-weight:bold;color:#9d174d}
 .math-q{font-size:40px;font-weight:bold;color:#7c3aed;letter-spacing:4px;margin:4px 0}
-.math-inp{
-  width:100px;padding:12px;text-align:center;font-size:28px;font-weight:bold;
-  border-radius:14px;border:2.5px solid #c084fc;outline:none;
-  color:#7c3aed;font-family:inherit;background:#f5f3ff;
-}
+.math-inp{width:100px;padding:12px;text-align:center;font-size:28px;font-weight:bold;border-radius:14px;border:2.5px solid #c084fc;outline:none;color:#7c3aed;font-family:inherit;background:#f5f3ff}
 .math-inp:focus{border-color:#7c3aed}
 .math-err{color:#dc2626;font-size:14px;min-height:18px}
 .math-btns{display:flex;gap:10px}
-.mbtn{
-  flex:1;padding:12px;border-radius:14px;border:none;
-  font-size:15px;font-weight:bold;cursor:pointer;font-family:inherit;
-}
+.mbtn{flex:1;padding:12px;border-radius:14px;border:none;font-size:15px;font-weight:bold;cursor:pointer;font-family:inherit}
 .mbtn.ok{background:linear-gradient(135deg,#f472b6,#c084fc);color:white;box-shadow:0 3px 12px rgba(236,72,153,.35)}
 .mbtn.cancel{background:#f3f4f6;color:#6b7280}
 
-/* ── 設定画面 ── */
-#ov-settings{
-  background:linear-gradient(155deg,#fce7f3 0%,#ede9fe 58%,#e0f2fe 100%);
-  gap:0;padding:0;overflow-y:auto;align-items:stretch;z-index:70;
-}
-.st-header{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:14px 20px;background:rgba(255,255,255,.6);
-  border-bottom:1.5px solid rgba(249,168,212,.5);
-  flex-shrink:0;
-}
-.st-title{font-size:17px;font-weight:bold;color:#9d174d;letter-spacing:2px}
-.st-close{
-  padding:6px 16px;border-radius:14px;border:none;
-  background:linear-gradient(135deg,#f472b6,#c084fc);
-  color:white;font-size:13px;font-weight:bold;cursor:pointer;font-family:inherit;
-}
-.st-body{padding:20px;display:flex;flex-direction:column;gap:20px;max-width:500px;margin:0 auto;width:100%}
-.st-lbl{font-size:13px;font-weight:bold;color:#9d174d;margin-bottom:6px}
+/* ── 設定 ── */
+#ov-settings{background:linear-gradient(155deg,#fce7f3 0%,#ede9fe 58%,#e0f2fe 100%);gap:0;padding:0;overflow-y:auto;align-items:stretch;z-index:70}
+.sth{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:rgba(255,255,255,.6);border-bottom:1.5px solid rgba(249,168,212,.5);flex-shrink:0}
+.sth-ttl{font-size:17px;font-weight:bold;color:#9d174d;letter-spacing:2px}
+.sth-cl{padding:6px 16px;border-radius:14px;border:none;background:linear-gradient(135deg,#f472b6,#c084fc);color:white;font-size:13px;font-weight:bold;cursor:pointer;font-family:inherit}
+.stb{padding:20px;display:flex;flex-direction:column;gap:20px;max-width:500px;margin:0 auto;width:100%}
+.slbl{font-size:13px;font-weight:bold;color:#9d174d;margin-bottom:6px}
 .tog{display:flex;gap:6px;flex-wrap:wrap}
-.tbtn{
-  flex:1;min-width:52px;padding:9px 4px;border-radius:11px;
-  border:2px solid #f9a8d4;background:white;
-  color:#9d174d;font-weight:bold;font-size:13px;cursor:pointer;
-  font-family:inherit;transition:all .15s;white-space:nowrap;
-}
-.tbtn.on{
-  background:linear-gradient(135deg,#f472b6,#c084fc);
-  border-color:#ec4899;color:white;
-  box-shadow:0 2px 10px rgba(236,72,153,.3);
-}
-.st-inp{
-  width:100%;padding:10px 14px;border-radius:12px;
-  border:2px solid #f9a8d4;font-size:14px;color:#4a0020;
-  background:#fff8fc;outline:none;font-family:inherit;
-}
-.st-inp:focus{border-color:#ec4899}
-.st-hint{font-size:11px;color:#9ca3af;margin-top:4px}
-.save-btn{
-  padding:14px;border-radius:18px;border:none;
-  background:linear-gradient(135deg,#f472b6,#c084fc);
-  color:white;font-size:16px;font-weight:bold;
-  letter-spacing:2px;cursor:pointer;
-  box-shadow:0 5px 18px rgba(236,72,153,.4);
-  font-family:inherit;
-}
+.tbtn{flex:1;min-width:52px;padding:9px 4px;border-radius:11px;border:2px solid #f9a8d4;background:white;color:#9d174d;font-weight:bold;font-size:13px;cursor:pointer;font-family:inherit;transition:all .15s;white-space:nowrap;text-align:center}
+.tbtn.on{background:linear-gradient(135deg,#f472b6,#c084fc);border-color:#ec4899;color:white;box-shadow:0 2px 10px rgba(236,72,153,.3)}
+.sinp{width:100%;padding:10px 14px;border-radius:12px;border:2px solid #f9a8d4;font-size:14px;color:#4a0020;background:#fff8fc;outline:none;font-family:inherit}
+.sinp:focus{border-color:#ec4899}
+.shint{font-size:11px;color:#9ca3af;margin-top:4px;line-height:1.5}
+.svbtn{padding:14px;border-radius:18px;border:none;background:linear-gradient(135deg,#f472b6,#c084fc);color:white;font-size:16px;font-weight:bold;letter-spacing:2px;cursor:pointer;box-shadow:0 5px 18px rgba(236,72,153,.4);font-family:inherit}
 
 /* ── 祝福 ── */
-#bloom{
-  position:fixed;inset:0;z-index:200;pointer-events:none;
-  display:none;align-items:center;justify-content:center;
-  background:rgba(253,232,244,.4);font-size:72px;letter-spacing:12px;
-}
+#bloom{position:fixed;inset:0;z-index:200;pointer-events:none;display:none;align-items:center;justify-content:center;background:rgba(253,232,244,.4);font-size:72px;letter-spacing:12px}
 #bloom.on{display:flex}
 </style>
 </head>
 <body>
+
+<!-- ══ スタート画面 ══ -->
+<div class="ov on" id="ov-start">
+  <div class="st-logo">🌸 もじれんしゅう</div>
+  <div class="st-info" id="start-info">
+    <b>YouTube URL</b> を設定してから<br>「はじめる」をタップしてね
+  </div>
+  <button class="big-btn" id="btn-start">▶ はじめる</button>
+  <button class="sub-btn" id="start-gear">⚙️ 設定を変える</button>
+</div>
 
 <!-- ══ YouTube ══ -->
 <div id="yt-wrap"><div id="yt-player"></div></div>
@@ -247,46 +196,46 @@ canvas{
 
 <!-- ══ 設定 ══ -->
 <div class="ov" id="ov-settings">
-  <div class="st-header">
-    <div class="st-title">⚙️ 設定</div>
-    <button class="st-close" id="st-close">✓ 保存してとじる</button>
+  <div class="sth">
+    <div class="sth-ttl">⚙️ 設定</div>
+    <button class="sth-cl" id="st-close">✓ 保存してとじる</button>
   </div>
-  <div class="st-body">
+  <div class="stb">
     <div>
-      <div class="st-lbl">⏱ タイマー（どのくらいで もんだいにする？）</div>
-      <div class="tog" id="tog-t">
-        <button class="tbtn on" data-v="15">15秒<br><small>テスト</small></button>
-        <button class="tbtn"    data-v="300">5分</button>
-        <button class="tbtn"    data-v="600">10分</button>
-        <button class="tbtn"    data-v="900">15分</button>
-        <button class="tbtn"    data-v="1200">20分</button>
+      <div class="slbl">📺 YouTube URL（必須）</div>
+      <input class="sinp" id="st-yt" type="text" placeholder="https://www.youtube.com/watch?v=...">
+      <div class="shint">
+        見せたい動画やプレイリストのURLを貼り付けてください。<br>
+        例）https://www.youtube.com/watch?v=XXXXXXXXXXX
       </div>
     </div>
     <div>
-      <div class="st-lbl">🌸 もじのしゅるい</div>
+      <div class="slbl">⏱ タイマー</div>
+      <div class="tog" id="tog-t">
+        <button class="tbtn on" data-v="15">15秒<br><small>テスト用</small></button>
+        <button class="tbtn" data-v="300">5分</button>
+        <button class="tbtn" data-v="600">10分</button>
+        <button class="tbtn" data-v="900">15分</button>
+        <button class="tbtn" data-v="1200">20分</button>
+      </div>
+    </div>
+    <div>
+      <div class="slbl">🌸 もじのしゅるい</div>
       <div class="tog" id="tog-m">
         <button class="tbtn on" data-v="h">ひらがな</button>
-        <button class="tbtn"    data-v="k">カタカナ</button>
-        <button class="tbtn"    data-v="b">りょうほう</button>
+        <button class="tbtn" data-v="k">カタカナ</button>
+        <button class="tbtn" data-v="b">りょうほう</button>
       </div>
     </div>
     <div>
-      <div class="st-lbl">⭐ ごうかくてん（なんてんで YouTube にもどれる？）</div>
+      <div class="slbl">⭐ ごうかくてん</div>
       <div class="tog" id="tog-p">
         <button class="tbtn on" data-v="15">かんたん<br><small>15点〜</small></button>
-        <button class="tbtn"    data-v="30">ふつう<br><small>30点〜</small></button>
-        <button class="tbtn"    data-v="50">むずかしい<br><small>50点〜</small></button>
+        <button class="tbtn" data-v="30">ふつう<br><small>30点〜</small></button>
+        <button class="tbtn" data-v="50">むずかしい<br><small>50点〜</small></button>
       </div>
     </div>
-    <div>
-      <div class="st-lbl">📺 YouTube（URLまたは検索ワード）</div>
-      <input class="st-inp" id="st-yt" type="text"
-        placeholder="例: こどもうた  または  youtube.com/watch?v=xxx">
-      <div class="st-hint">
-        空欄の場合「こどもうた」で検索します。特定の動画を使うには youtube.com/watch?v=XXXX を入力してください。
-      </div>
-    </div>
-    <button class="save-btn" id="btn-save">🌸 保存する</button>
+    <button class="svbtn" id="btn-save">🌸 保存する</button>
   </div>
 </div>
 
@@ -302,27 +251,19 @@ const H = 'あいうえおかきくけこさしすせそたちつてとなにぬ
 const K = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン'.split('');
 const COLORS = ['#be185d','#7c3aed','#1d4ed8','#0d9488','#b45309','#c2410c','#15803d','#9333ea'];
 const rnd = a => a[Math.floor(Math.random() * a.length)];
-const CS  = 280;
+const CS = 280;
 const FONT = `bold 222px 'Hiragino Kaku Gothic ProN','Yu Gothic','Meiryo',sans-serif`;
-const BG   = '#fffbfd';
+const BG = '#fffbfd';
 const PASS_MSG = ['すごい！かんぺき！🌸','よくできました！⭐','じょうず！🎀'];
 const FAIL_MSG = ['もう一かい！💪','ゆっくりていねいに✏','ひだりをよく見てみよう💡'];
 
 // ══════════════════════════════════════════════
-//  設定（localStorageで永続化）
+//  設定（localStorage）
 // ══════════════════════════════════════════════
-const DEFAULTS = { secs:15, mode:'h', pass:15, yt:'こどもうた' };
-let cfg = Object.assign({}, DEFAULTS);
-function loadCfg(){
-  try {
-    const saved = localStorage.getItem('mojiCfg');
-    if(saved) cfg = Object.assign({}, DEFAULTS, JSON.parse(saved));
-  } catch(e){}
-}
-function saveCfg(){
-  try { localStorage.setItem('mojiCfg', JSON.stringify(cfg)); } catch(e){}
-}
-loadCfg();
+const DEF = { secs:15, mode:'h', pass:15, yt:'' };
+let cfg = Object.assign({}, DEF);
+try { const s=localStorage.getItem('mojiCfg'); if(s) cfg=Object.assign({},DEF,JSON.parse(s)); } catch(e){}
+function saveCfg(){ try{ localStorage.setItem('mojiCfg',JSON.stringify(cfg)); }catch(e){} }
 
 // ══════════════════════════════════════════════
 //  ユーティリティ
@@ -331,43 +272,53 @@ const $ = id => document.getElementById(id);
 const ov = (id, on) => $(id).classList.toggle('on', on);
 
 // ══════════════════════════════════════════════
-//  YouTube
+//  スタート画面
 // ══════════════════════════════════════════════
-let ytPlayer = null, ytReady = false, timerLive = false;
+function updateStartInfo(){
+  $('start-info').innerHTML = cfg.yt
+    ? `<b>▶</b> タップして YouTube をひらこう！`
+    : `まず <b>⚙️ 設定</b> で<br>YouTube URL を入れてね`;
+  $('btn-start').disabled = !cfg.yt;
+  $('btn-start').style.opacity = cfg.yt ? '1' : '0.4';
+}
+updateStartInfo();
+
+// YouTube 初期化（必ずユーザータップから呼ぶ → iOS autoplay 許可）
+let ytPlayer=null, ytReady=false, timerLive=false;
 
 function parseYT(s){
-  // URLからvideoIdを抽出、なければsearch queryとして扱う
-  const patterns = [/[?&]v=([^&]+)/, /youtu\.be\/([^?&]+)/, /\/embed\/([^?&]+)/];
-  for(const p of patterns){ const m = s.match(p); if(m) return {type:'video', id:m[1]}; }
-  const plMatch = s.match(/list=([^&]+)/);
-  if(plMatch) return {type:'playlist', id:plMatch[1]};
-  if(/^[\w-]{11}$/.test(s.trim())) return {type:'video', id:s.trim()};
-  return {type:'search', id: s.trim() || 'こどもうた'};
+  const pp=[/[?&]v=([^&]+)/,/youtu\.be\/([^?&]+)/,/\/embed\/([^?&]+)/];
+  for(const p of pp){ const m=s.match(p); if(m) return {type:'video',id:m[1]}; }
+  const pl=s.match(/list=([^&]+)/); if(pl) return {type:'playlist',id:pl[1]};
+  if(/^[\w-]{11}$/.test(s.trim())) return {type:'video',id:s.trim()};
+  return null; // 無効
 }
 
 function initYT(){
-  const info = parseYT(cfg.yt || 'こどもうた');
+  const info = parseYT(cfg.yt||'');
+  if(!info){ alert('YouTube URL が正しくありません。設定を確認してください。'); return; }
+
   const vars = { playsinline:1, rel:0, modestbranding:1, iv_load_policy:3, autoplay:1 };
-  if(info.type==='video')    { vars.videoId = info.id; }
-  if(info.type==='playlist') { vars.listType='playlist'; vars.list=info.id; }
-  if(info.type==='search')   { vars.listType='search'; vars.list=info.id; }
+  if(info.type==='playlist'){ vars.listType='playlist'; vars.list=info.id; }
+
+  ov('ov-start', false);
 
   window.onYouTubeIframeAPIReady = function(){
     ytPlayer = new YT.Player('yt-player', {
       width:'100%', height:'100%',
-      videoId: vars.videoId || undefined,
+      videoId: info.type==='video' ? info.id : undefined,
       playerVars: vars,
       events:{
         onReady(e){ ytReady=true; try{ e.target.playVideo(); }catch(x){} },
-        onStateChange(e){
-          if(e.data===1 && !timerLive) startTimer();
-        }
+        onStateChange(e){ if(e.data===1 && !timerLive) startTimer(); }
       }
     });
   };
+  // API がすでにロード済みなら直接呼ぶ
   if(window.YT && window.YT.Player) window.onYouTubeIframeAPIReady();
 }
-initYT();
+
+$('btn-start').onclick = initYT;
 
 // ══════════════════════════════════════════════
 //  タイマー
@@ -375,260 +326,173 @@ initYT();
 let remaining=0, timerTick=null;
 
 function startTimer(){
-  timerLive = true;
-  remaining = cfg.secs;
+  timerLive=true; remaining=cfg.secs;
   tick();
   clearInterval(timerTick);
-  timerTick = setInterval(tick, 1000);
+  timerTick=setInterval(tick,1000);
 }
 function tick(){
-  remaining = Math.max(0, remaining);
+  remaining=Math.max(0,remaining);
   const m=Math.floor(remaining/60), s=remaining%60;
-  $('t-disp').textContent = `${m}:${s.toString().padStart(2,'0')}`;
-  $('t-disp').style.color = remaining<=10 ? '#fca5a5' : 'white';
+  $('t-disp').textContent=`${m}:${s.toString().padStart(2,'0')}`;
+  $('t-disp').style.color=remaining<=10?'#fca5a5':'white';
   if(remaining===0){ clearInterval(timerTick); timerLive=false; showQuiz(); }
   else remaining--;
 }
 
 // ══════════════════════════════════════════════
-//  Canvas 描画
+//  Canvas
 // ══════════════════════════════════════════════
-let currentChar = 'あ';
-const pen = {on:false, ctx:null, cvs:null};
+let currentChar='あ';
+const pen={on:false,ctx:null,cvs:null};
 
-function paintCv(id, guide){
-  const cv=$(id), ctx=cv.getContext('2d');
+function paintCv(id,guide){
+  const cv=$(id),ctx=cv.getContext('2d');
   ctx.clearRect(0,0,CS,CS);
   ctx.fillStyle=BG; ctx.fillRect(0,0,CS,CS);
-  // グリッド
-  ctx.save();
-  ctx.strokeStyle='#fce7f3'; ctx.lineWidth=1.5;
-  ctx.setLineDash([6,6]);
-  ctx.beginPath();
-  ctx.moveTo(CS/2,8); ctx.lineTo(CS/2,CS-8);
-  ctx.moveTo(8,CS/2); ctx.lineTo(CS-8,CS/2);
-  ctx.stroke(); ctx.setLineDash([]);
-  ctx.restore();
-  // 枠
-  ctx.save();
-  ctx.strokeStyle='#f9a8d4'; ctx.lineWidth=2.5;
-  ctx.beginPath();
-  if(ctx.roundRect) ctx.roundRect(5,5,CS-10,CS-10,16);
-  else ctx.rect(5,5,CS-10,CS-10);
-  ctx.stroke(); ctx.restore();
-  // ガイド文字
-  if(guide){
-    ctx.font=FONT; ctx.textAlign='center'; ctx.textBaseline='middle';
-    ctx.fillStyle='rgba(190,24,93,0.11)';
-    ctx.fillText(currentChar, CS/2, CS/2+5);
-  }
+  ctx.save(); ctx.strokeStyle='#fce7f3'; ctx.lineWidth=1.5; ctx.setLineDash([6,6]);
+  ctx.beginPath(); ctx.moveTo(CS/2,8); ctx.lineTo(CS/2,CS-8); ctx.moveTo(8,CS/2); ctx.lineTo(CS-8,CS/2); ctx.stroke(); ctx.setLineDash([]); ctx.restore();
+  ctx.save(); ctx.strokeStyle='#f9a8d4'; ctx.lineWidth=2.5;
+  ctx.beginPath(); if(ctx.roundRect) ctx.roundRect(5,5,CS-10,CS-10,16); else ctx.rect(5,5,CS-10,CS-10); ctx.stroke(); ctx.restore();
+  if(guide){ ctx.font=FONT; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillStyle='rgba(190,24,93,0.11)'; ctx.fillText(currentChar,CS/2,CS/2+5); }
 }
 
 function setupDraw(id){
-  const cv=$(id), opt={passive:false};
-  const xy = e=>{
-    const r=cv.getBoundingClientRect(), t=e.touches?e.touches[0]:e;
-    return {x:(t.clientX-r.left)*CS/r.width, y:(t.clientY-r.top)*CS/r.height};
-  };
+  const cv=$(id),opt={passive:false};
+  const xy=e=>{const r=cv.getBoundingClientRect(),t=e.touches?e.touches[0]:e;return{x:(t.clientX-r.left)*CS/r.width,y:(t.clientY-r.top)*CS/r.height};};
   const start=e=>{
     e.preventDefault();
     const col=rnd(COLORS);
     $('pen-dot').style.cssText=`width:20px;height:20px;border-radius:50%;border:2.5px solid white;background:${col};box-shadow:0 0 8px ${col}88;transition:background .2s`;
-    const ctx=cv.getContext('2d'), p=xy(e);
-    ctx.beginPath(); ctx.moveTo(p.x,p.y);
-    ctx.strokeStyle=col; ctx.lineWidth=12; ctx.lineCap='round'; ctx.lineJoin='round';
+    const ctx=cv.getContext('2d'),p=xy(e);
+    ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.strokeStyle=col; ctx.lineWidth=12; ctx.lineCap='round'; ctx.lineJoin='round';
     pen.on=true; pen.ctx=ctx; pen.cvs=cv;
   };
-  const move=e=>{
-    e.preventDefault();
-    if(!pen.on||pen.cvs!==cv) return;
-    const p=xy(e); pen.ctx.lineTo(p.x,p.y); pen.ctx.stroke();
-    pen.ctx.beginPath(); pen.ctx.moveTo(p.x,p.y);
-  };
+  const move=e=>{ e.preventDefault(); if(!pen.on||pen.cvs!==cv) return; const p=xy(e); pen.ctx.lineTo(p.x,p.y); pen.ctx.stroke(); pen.ctx.beginPath(); pen.ctx.moveTo(p.x,p.y); };
   const end=e=>{ pen.on=false; };
-  cv.addEventListener('touchstart',start,opt);
-  cv.addEventListener('touchmove', move, opt);
-  cv.addEventListener('touchend',  end);
-  cv.addEventListener('mousedown', start);
-  cv.addEventListener('mousemove', move);
-  cv.addEventListener('mouseup',   end);
-  cv.addEventListener('mouseleave',end);
+  cv.addEventListener('touchstart',start,opt); cv.addEventListener('touchmove',move,opt); cv.addEventListener('touchend',end);
+  cv.addEventListener('mousedown',start); cv.addEventListener('mousemove',move); cv.addEventListener('mouseup',end); cv.addEventListener('mouseleave',end);
 }
-setupDraw('cv-t');
-setupDraw('cv-w');
+setupDraw('cv-t'); setupDraw('cv-w');
 $('wt').onclick=()=>paintCv('cv-t',true);
-$('ww').onclick=()=>{ paintCv('cv-w',false); };
+$('ww').onclick=()=>paintCv('cv-w',false);
 
 // ══════════════════════════════════════════════
 //  採点
 // ══════════════════════════════════════════════
-function evalCv(cvId, char){
-  const ref=document.createElement('canvas');
-  ref.width=CS; ref.height=CS;
-  const rc=ref.getContext('2d');
-  rc.fillStyle='white'; rc.fillRect(0,0,CS,CS);
-  rc.font=FONT; rc.textAlign='center'; rc.textBaseline='middle';
-  rc.fillStyle='black'; rc.fillText(char,CS/2,CS/2+5);
+function evalCv(cvId,char){
+  const ref=document.createElement('canvas'); ref.width=CS; ref.height=CS;
+  const rc=ref.getContext('2d'); rc.fillStyle='white'; rc.fillRect(0,0,CS,CS);
+  rc.font=FONT; rc.textAlign='center'; rc.textBaseline='middle'; rc.fillStyle='black'; rc.fillText(char,CS/2,CS/2+5);
   const refD=rc.getImageData(0,0,CS,CS).data;
-  const R=12, mask=new Uint8Array(CS*CS);
+  const R=12,mask=new Uint8Array(CS*CS);
   for(let y=0;y<CS;y++) for(let x=0;x<CS;x++){
-    if(refD[(y*CS+x)*4]<100){
-      for(let dy=-R;dy<=R;dy++) for(let dx=-R;dx<=R;dx++){
-        if(dx*dx+dy*dy<=R*R){ const nx=x+dx,ny=y+dy; if(nx>=0&&nx<CS&&ny>=0&&ny<CS) mask[ny*CS+nx]=1; }
-      }
-    }
+    if(refD[(y*CS+x)*4]<100){ for(let dy=-R;dy<=R;dy++) for(let dx=-R;dx<=R;dx++){ if(dx*dx+dy*dy<=R*R){const nx=x+dx,ny=y+dy;if(nx>=0&&nx<CS&&ny>=0&&ny<CS)mask[ny*CS+nx]=1;} } }
   }
   const ud=$(cvId).getContext('2d').getImageData(0,0,CS,CS).data;
   let refT=0,ovlp=0,uIn=0,uOut=0;
   for(let pi=0;pi<CS*CS;pi++){
-    const i=pi*4, lum=ud[i]*.299+ud[i+1]*.587+ud[i+2]*.114;
-    const isU=lum<218&&ud[i+3]>30, isC=refD[i]<100;
-    if(isC) refT++;
-    if(isC&&isU) ovlp++;
-    if(isU){ mask[pi]?uIn++:uOut++; }
+    const i=pi*4,lum=ud[i]*.299+ud[i+1]*.587+ud[i+2]*.114;
+    const isU=lum<218&&ud[i+3]>30,isC=refD[i]<100;
+    if(isC)refT++; if(isC&&isU)ovlp++; if(isU){mask[pi]?uIn++:uOut++;}
   }
-  const tot=uIn+uOut;
-  if(tot<80) return 0;
-  const rec=refT>0?ovlp/refT:0, pre=tot>0?uIn/tot:1;
-  return Math.min(100, Math.round((.55*rec+.45*pre)*165));
+  const tot=uIn+uOut; if(tot<80) return 0;
+  const rec=refT>0?ovlp/refT:0,pre=tot>0?uIn/tot:1;
+  return Math.min(100,Math.round((.55*rec+.45*pre)*165));
 }
 
 // ══════════════════════════════════════════════
-//  クイズフロー
+//  クイズ
 // ══════════════════════════════════════════════
 function showQuiz(){
-  if(ytReady&&ytPlayer) try{ ytPlayer.pauseVideo(); }catch(e){}
-  const pool = cfg.mode==='h'?H : cfg.mode==='k'?K : [...H,...K];
-  currentChar = rnd(pool);
-  $('q-char').textContent = currentChar;
+  if(ytReady&&ytPlayer) try{ytPlayer.pauseVideo();}catch(e){}
+  const pool=cfg.mode==='h'?H:cfg.mode==='k'?K:[...H,...K];
+  currentChar=rnd(pool); $('q-char').textContent=currentChar;
   paintCv('cv-t',true); paintCv('cv-w',false);
   ov('ov-quiz',true);
 }
 
 $('btn-judge').onclick=()=>{
-  const sc = evalCv('cv-w', currentChar);
-  const stars = sc>=50?3 : sc>=30?2 : sc>=15?1 : 0;
+  const sc=evalCv('cv-w',currentChar);
+  const stars=sc>=50?3:sc>=30?2:sc>=15?1:0;
   ov('ov-quiz',false);
-  showResult(sc>=cfg.pass, stars, sc);
+  showResult(sc>=cfg.pass,stars,sc);
 };
 
 // ══════════════════════════════════════════════
-//  結果フロー
+//  結果
 // ══════════════════════════════════════════════
 let cdTick=null;
-function showResult(passed, stars, pct){
-  if(stars===3){ $('bloom').classList.add('on'); setTimeout(()=>$('bloom').classList.remove('on'),2000); }
-  const el=$('ov-result');
-  el.className='ov on '+(passed?'pass':'fail');
+function showResult(passed,stars,pct){
+  if(stars===3){$('bloom').classList.add('on');setTimeout(()=>$('bloom').classList.remove('on'),2000);}
+  const el=$('ov-result'); el.className='ov on '+(passed?'pass':'fail');
   $('r-stars').textContent='⭐'.repeat(stars)+'☆'.repeat(3-stars);
   if(passed){
-    $('r-title').textContent=`${pct}てん！ よくできました！🌸`;
-    $('r-title').style.color='#065f46';
+    $('r-title').textContent=`${pct}てん！ よくできました！🌸`; $('r-title').style.color='#065f46';
     $('r-msg').textContent=rnd(PASS_MSG);
-    $('r-btn').textContent='▶ YouTube つづき';
-    $('r-btn').className='rbtn pass';
+    $('r-btn').textContent='▶ YouTube つづき'; $('r-btn').className='rbtn pass';
     let cd=5; $('r-cd').textContent=`${cd}秒後に自動でつづく`;
     clearInterval(cdTick);
     cdTick=setInterval(()=>{ cd--; $('r-cd').textContent=`${cd}秒後に自動でつづく`; if(cd<=0){clearInterval(cdTick);resumeYT();} },1000);
-    $('r-btn').onclick=()=>{ clearInterval(cdTick); resumeYT(); };
+    $('r-btn').onclick=()=>{clearInterval(cdTick);resumeYT();};
   } else {
-    $('r-title').textContent=`${pct}てん… もう一かい！💪`;
-    $('r-title').style.color='#92400e';
-    $('r-msg').textContent=rnd(FAIL_MSG);
-    $('r-cd').textContent='';
-    $('r-btn').textContent='🌟 チャレンジ！';
-    $('r-btn').className='rbtn fail';
-    $('r-btn').onclick=()=>{ ov('ov-result',false); showQuiz(); };
+    $('r-title').textContent=`${pct}てん… もう一かい！💪`; $('r-title').style.color='#92400e';
+    $('r-msg').textContent=rnd(FAIL_MSG); $('r-cd').textContent='';
+    $('r-btn').textContent='🌟 チャレンジ！'; $('r-btn').className='rbtn fail';
+    $('r-btn').onclick=()=>{ov('ov-result',false);showQuiz();};
   }
 }
-
 function resumeYT(){
-  ov('ov-result',false);
-  timerLive=false; // onStateChange で再スタート
-  if(ytReady&&ytPlayer) try{ ytPlayer.playVideo(); }catch(e){}
+  ov('ov-result',false); timerLive=false;
+  if(ytReady&&ytPlayer) try{ytPlayer.playVideo();}catch(e){}
 }
 
 // ══════════════════════════════════════════════
-//  設定ギアボタン → 計算ゲート
+//  設定ゲート（2桁の足し算）
 // ══════════════════════════════════════════════
-let mathAnswer=0;
-
-$('gear-btn').onclick=()=>{
+let mathAns=0;
+function openMath(){
   const a=10+Math.floor(Math.random()*40), b=10+Math.floor(Math.random()*40);
-  mathAnswer=a+b;
-  $('math-q').textContent=`${a} + ${b} = ?`;
-  $('math-inp').value='';
-  $('math-err').textContent='';
-  ov('ov-math',true);
-  setTimeout(()=>$('math-inp').focus(),100);
-};
-$('math-cancel').onclick=()=>ov('ov-math',false);
-$('math-ok').onclick=checkMath;
-$('math-inp').addEventListener('keydown',e=>{ if(e.key==='Enter') checkMath(); });
-
+  mathAns=a+b; $('math-q').textContent=`${a} + ${b} = ?`;
+  $('math-inp').value=''; $('math-err').textContent='';
+  ov('ov-math',true); setTimeout(()=>$('math-inp').focus(),100);
+}
+$('gear-btn').onclick    = openMath;
+$('start-gear').onclick  = openMath;   // スタート画面の設定ボタンも同じゲート
+$('math-cancel').onclick = ()=>ov('ov-math',false);
+$('math-ok').onclick     = checkMath;
+$('math-inp').addEventListener('keydown',e=>{if(e.key==='Enter')checkMath();});
 function checkMath(){
-  const ans=parseInt($('math-inp').value,10);
-  if(ans===mathAnswer){
-    ov('ov-math',false);
-    openSettings();
-  } else {
-    $('math-err').textContent='ちがいます。もう一かい！';
-    $('math-inp').value='';
-    $('math-inp').focus();
-  }
+  if(parseInt($('math-inp').value,10)===mathAns){ ov('ov-math',false); openSettings(); }
+  else { $('math-err').textContent='ちがいます。もう一かい！'; $('math-inp').value=''; $('math-inp').focus(); }
 }
 
 // ══════════════════════════════════════════════
 //  設定画面
 // ══════════════════════════════════════════════
+function setTog(grpId,val){ $(grpId).querySelectorAll('.tbtn').forEach(b=>b.classList.toggle('on',b.dataset.v===val)); }
+function getTog(grpId){ const b=$(grpId).querySelector('.tbtn.on'); return b?b.dataset.v:null; }
+['tog-t','tog-m','tog-p'].forEach(g=>{ $(g).addEventListener('click',e=>{ const b=e.target.closest('.tbtn'); if(!b) return; $(g).querySelectorAll('.tbtn').forEach(x=>x.classList.remove('on')); b.classList.add('on'); }); });
+
 function openSettings(){
-  // 現在の設定をUIに反映
-  setTog('tog-t', String(cfg.secs));
-  setTog('tog-m', cfg.mode);
-  setTog('tog-p', String(cfg.pass));
-  $('st-yt').value = cfg.yt || '';
+  setTog('tog-t',String(cfg.secs)); setTog('tog-m',cfg.mode); setTog('tog-p',String(cfg.pass));
+  $('st-yt').value=cfg.yt||'';
   ov('ov-settings',true);
 }
-
-function setTog(grpId, val){
-  $(grpId).querySelectorAll('.tbtn').forEach(b=>{
-    b.classList.toggle('on', b.dataset.v===val);
-  });
-}
-function getTog(grpId){
-  const b=$(grpId).querySelector('.tbtn.on');
-  return b?b.dataset.v:null;
-}
-
-['tog-t','tog-m','tog-p'].forEach(grpId=>{
-  $(grpId).addEventListener('click',e=>{
-    const b=e.target.closest('.tbtn'); if(!b) return;
-    $(grpId).querySelectorAll('.tbtn').forEach(x=>x.classList.remove('on'));
-    b.classList.add('on');
-  });
-});
-
 function saveSettings(){
-  cfg.secs = parseInt(getTog('tog-t')||'15',10);
-  cfg.mode = getTog('tog-m')||'h';
-  cfg.pass = parseInt(getTog('tog-p')||'15',10);
-  cfg.yt   = $('st-yt').value.trim() || 'こどもうた';
-  saveCfg();
-  ov('ov-settings',false);
-  // YouTube再起動
-  ytReady=false; timerLive=false;
-  clearInterval(timerTick);
-  const wrap=$('yt-wrap');
-  wrap.innerHTML='<div id="yt-player"></div>';
-  // 再設定後のdiv再取得はiframeAPIが上書きするので直接initYTを呼ぶ
-  initYT();
-  // タイマー表示リセット
-  const m=Math.floor(cfg.secs/60), s=cfg.secs%60;
-  $('t-disp').textContent=`${m}:${s.toString().padStart(2,'0')}`;
+  cfg.secs=parseInt(getTog('tog-t')||'15',10);
+  cfg.mode=getTog('tog-m')||'h';
+  cfg.pass=parseInt(getTog('tog-p')||'15',10);
+  cfg.yt=$('st-yt').value.trim();
+  saveCfg(); ov('ov-settings',false);
+  // プレイヤーをリセットしてスタート画面へ
+  ytReady=false; timerLive=false; clearInterval(timerTick);
+  $('yt-wrap').innerHTML='<div id="yt-player"></div>';
+  ytPlayer=null;
+  updateStartInfo();
+  ov('ov-start',true);
 }
-
-$('btn-save').onclick=saveSettings;
-$('st-close').onclick=saveSettings;
+$('btn-save').onclick=$('st-close').onclick=saveSettings;
 </script>
 </body>
 </html>
