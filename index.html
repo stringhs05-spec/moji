@@ -98,7 +98,7 @@ canvas{
 .r-cd{font-size:13px;color:#6b7280;min-height:20px}
 
 /* ── 計算ゲート ── */
-#ov-math{background:linear-gradient(155deg,rgba(252,231,243,.97),rgba(237,233,254,.97));backdrop-filter:blur(8px);gap:18px;padding:40px 28px;text-align:center;z-index:80}
+#ov-math{background:linear-gradient(155deg,rgba(252,231,243,.97),rgba(237,233,254,.97));backdrop-filter:blur(8px);gap:18px;padding:40px 28px;text-align:center;z-index:100}
 .math-title{font-size:18px;font-weight:bold;color:#9d174d}
 .math-q{font-size:40px;font-weight:bold;color:#7c3aed;letter-spacing:4px;margin:4px 0}
 .math-inp{width:100px;padding:12px;text-align:center;font-size:28px;font-weight:bold;border-radius:14px;border:2.5px solid #c084fc;outline:none;color:#7c3aed;font-family:inherit;background:#f5f3ff}
@@ -260,7 +260,7 @@ const FAIL_MSG = ['もう一かい！💪','ゆっくりていねいに✏','ひ
 // ══════════════════════════════════════════════
 //  設定（localStorage）
 // ══════════════════════════════════════════════
-const DEF = { secs:15, mode:'h', pass:15, yt:'' };
+const DEF = { secs:15, mode:'h', pass:15, yt:'https://www.youtube.com/watch?v=XqZsoesa55w' };
 let cfg = Object.assign({}, DEF);
 try { const s=localStorage.getItem('mojiCfg'); if(s) cfg=Object.assign({},DEF,JSON.parse(s)); } catch(e){}
 function saveCfg(){ try{ localStorage.setItem('mojiCfg',JSON.stringify(cfg)); }catch(e){} }
@@ -276,8 +276,8 @@ const ov = (id, on) => $(id).classList.toggle('on', on);
 // ══════════════════════════════════════════════
 function updateStartInfo(){
   $('start-info').innerHTML = cfg.yt
-    ? `<b>▶</b> タップして YouTube をひらこう！`
-    : `まず <b>⚙️ 設定</b> で<br>YouTube URL を入れてね`;
+    ? `▶ タップして YouTube をひらこう！`
+    : `まず <b>⚙️ 設定</b> で YouTube URL を入れてね`;
   $('btn-start').disabled = !cfg.yt;
   $('btn-start').style.opacity = cfg.yt ? '1' : '0.4';
 }
